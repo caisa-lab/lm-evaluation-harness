@@ -231,7 +231,6 @@ def positional_deprecated(fn):
     A decorator to nudge users into passing only keyword args (`kwargs`) to the
     wrapped function, `fn`.
     """
-
     @functools.wraps(fn)
     def _wrapper(*args, **kwargs):
         if len(args) != 1 if inspect.ismethod(fn) else 0:

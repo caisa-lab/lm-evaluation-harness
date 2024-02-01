@@ -67,6 +67,7 @@ from . import ceval
 from . import csatqa
 from . import haerae
 from . import cmmlu
+from . import bbq
 
 ########################################
 # Translation tasks
@@ -99,6 +100,8 @@ all_translation_benchmarks = {
 
 
 TASK_REGISTRY = {
+    # Bias
+    "bbq": bbq.BBQ,
     "babi": babi.Babi,
     # GLUE
     "cola": glue.CoLA,
