@@ -68,6 +68,7 @@ from . import csatqa
 from . import haerae
 from . import cmmlu
 from . import bbq
+from . import crowspairsde
 
 ########################################
 # Translation tasks
@@ -78,7 +79,6 @@ gpt3_translation_benchmarks = {
     "wmt14": ["en-fr", "fr-en"],  # French
     "wmt16": ["en-ro", "ro-en", "de-en", "en-de"],  # German, Romanian
 }
-
 
 # 28 total
 selected_translation_benchmarks = {
@@ -93,7 +93,6 @@ all_translation_benchmarks = {
     for ts in sacrebleu.get_available_testsets()
 }
 
-
 ########################################
 # All tasks
 ########################################
@@ -103,6 +102,7 @@ TASK_REGISTRY = {
     # Bias
     "bbq": bbq.BBQ,
     "babi": babi.Babi,
+    "crowspairsde": crowspairsde.CrowsPairsDE,
     # GLUE
     "cola": glue.CoLA,
     "mnli": glue.MNLI,
@@ -354,7 +354,6 @@ TASK_REGISTRY = {
     **ceval.create_all_tasks(),
     **cmmlu.create_all_tasks()
 }
-
 
 ALL_TASKS = sorted(list(TASK_REGISTRY))
 
