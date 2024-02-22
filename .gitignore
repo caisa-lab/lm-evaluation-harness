@@ -6,6 +6,5 @@ lm_cache
 
 *.egg-info/
 
-slurm_scripts/**
 data/**
 logs/**
