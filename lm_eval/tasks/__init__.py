@@ -68,6 +68,7 @@ from .mlmm import multilingual_arc
 from .mlmm import multilingual_hellaswag
 from .mlmm import multilingual_mmlu
 from .mlmm import multilingual_truthfulqa
+from . import crowspairses
 
 
 ########################################
@@ -101,6 +102,9 @@ all_translation_benchmarks = {
 
 
 TASK_REGISTRY = {
+
+    "crowspairses": crowspairses.CrowsPairsES,
+
     # GLUE
     "cola": glue.CoLA,
     "mnli": glue.MNLI,
