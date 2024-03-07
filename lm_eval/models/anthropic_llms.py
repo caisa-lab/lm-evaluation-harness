@@ -16,7 +16,7 @@ def anthropic_completion(
     backoff_time = 3
     while True:
         try:
-            response = client.completions.create(
+            response = client.completion(
                 prompt=f"{anthropic.HUMAN_PROMPT} {prompt}{anthropic.AI_PROMPT}",
                 model=model,
                 # NOTE: Claude really likes to do CoT, and overly aggressive stop sequences
@@ -26,7 +26,7 @@ def anthropic_completion(
                 temperature=temperature,
             )
             print(response)
-            return response.completion
+            return response["completion"]
         except RuntimeError:
             # TODO: I don't actually know what error Anthropic raises when it times out
             #       So err update this error when we find out.
@@ -40,7 +40,7 @@ def anthropic_completion(
 class AnthropicLM(BaseLM):
     REQ_CHUNK_SIZE = 20
 
-    def __init__(self, model="claude-2"):
+    def __init__(self, model):
         """
 
         :param model: str
@@ -50,7 +50,7 @@ class AnthropicLM(BaseLM):
         import anthropic
 
         self.model = model
-        self.client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+        self.client = anthropic.Client(os.environ["ANTHROPIC_API_KEY"])
 
     @property
     def eot_token_id(self):

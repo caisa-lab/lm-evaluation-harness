@@ -9,7 +9,7 @@ import hashlib
 import functools
 import numpy as np
 import re
-import importlib.resources
+from importlib_resources import files
 from lm_eval.base import rf, Task
 from lm_eval.metrics import mean
 
@@ -90,6 +90,7 @@ class BigBenchJsonTask(Task):
             ]
         if self._has_generative:
             requests.append(
+                # because of the addition of "max_length", this is now a dict (was a list)
                 rf.greedy_until(ctx, {"until": [], "max_length": self.max_length})
             )
         return requests
@@ -229,7 +230,7 @@ def create_task_from_path(json_path):
 
 
 def create_all_tasks():
-    resources_dir = importlib.resources.files("lm_eval.datasets") / "bigbench_resources"
+    resources_dir = files("lm_eval.datasets") / "bigbench_resources"
     supported_tasks = [os.path.splitext(x)[0] for x in os.listdir(resources_dir)]
     res = {}
     for task_name in supported_tasks:

@@ -8,7 +8,6 @@ import sys
 import fnmatch
 from typing import List, Union
 
-import gc
 import torch
 
 from omegaconf import OmegaConf
@@ -65,11 +64,11 @@ def join_iters(iters):
         yield from iter
 
 
-def chunks(iter, n=0, fn=None):
+def chunks(iter, n):
     arr = []
-    for i, x in enumerate(iter):
+    for x in iter:
         arr.append(x)
-        if len(arr) == (fn(i) if fn else n):
+        if len(arr) == n:
             yield arr
             arr = []
 
@@ -231,6 +230,7 @@ def positional_deprecated(fn):
     A decorator to nudge users into passing only keyword args (`kwargs`) to the
     wrapped function, `fn`.
     """
+
     @functools.wraps(fn)
     def _wrapper(*args, **kwargs):
         if len(args) != 1 if inspect.ismethod(fn) else 0:
@@ -283,8 +283,3 @@ def run_task_tests(task_list: List[str]):
         raise ValueError(
             f"Not all tests for the specified tasks ({task_list}) ran successfully! Error code: {pytest_return_val}"
         )
-
-
-def clear_torch_cache():
-    gc.collect()
-    torch.cuda.empty_cache()

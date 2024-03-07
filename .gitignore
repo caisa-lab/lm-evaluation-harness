@@ -1,11 +1,12 @@
 env
 *.pyc
+*.log
 data/
 lm_cache
 .idea
+.vscode
 
-*.egg-info/
+*.egg-info
 
-slurm_scripts/**
-data/**
-logs/**
+
+tests/test_cache.db

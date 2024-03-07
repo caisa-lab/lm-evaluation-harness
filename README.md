@@ -1,19 +1,68 @@
+# OpenGPT-X: Language Model Evaluation Harness
+
+A fork of [EleutherAI's lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), which extends the framework with mostly **multilingual evaluation** tasks.
+The current implementation progress is tracked under [GitHub issues](https://github.com/OpenGPTX/lm-evaluation-harness/issues).
+
+## Additional tasks
+
+- XNLI (en,de,fr,es,el,bg,ar)
+- XQUAD (ar,de,el,en,es,hi,ru,th,tr,vi,zh)
+- PAWSX (en,fr,de)
+- MLQA (en,es,hi,vi,de,ar)
+- MLSum (de,fr,es,ru,tu)
+- XStance (de,fr)
+- GNAD10 (de)
+- StereoSet (en,de)
+- GermEval 2017 (de)
+- GermEval 2018 (de)
+- German LER PPL (de)
+- German Europarl PPL (de)
+- Germanquad (de)
+- PIAF (fr)
+- Fquad (fr)
+- Squad (it)
+- Xcopa (it)
+- Xl-Wic (de,it)
+- Wino_x (de)
+- X-CSQA (ar,de, en, es, fr, hi, it, jap, nl, pt, ru, sw, ur, vi, zh)
+- X-CODAH (ar,de, en, es, fr, hi, it, jap, nl, pl, pt, ru, sw, ur, vi, zh)
+
+
+## Install
+
+```
+pip install git+https://github.com/OpenGPTX/lm-evaluation-harness.git
+```
+
+##  Basic Usage
+
+With this example, you can evaluate a German GPT model ([malteos/gpt2-xl-wechsel-german](https://huggingface.co/malteos/gpt2-xl-wechsel-german)) on the German subsets of the evaluation tasks:
+
+```bash
+python main.py \
+  --model gpt2 \
+  --model_args pretrained=malteos/gpt2-xl-wechsel-german \
+  --device 0 \
+  --no_tokenizer_check \
+  --tasks xnli_de,xquad_de,pawsx_de
+```
+
+
+
+## Other changes
+
+- Support for additional tokenizers (Bloom, XGLM) and `--no_tokenizer_check` argument.
+
+For other details on how to use the evaluation framework, please see the original documentation below:
+
+---
+
+The `README.md` from [EleutherAI's original repository](https://github.com/EleutherAI/lm-evaluation-harness):
+
 # Language Model Evaluation Harness
 
-## We're Refactoring LM-Eval!
-(as of 6/15/23)
-We have a revamp of the Evaluation Harness library internals staged on the [big-refactor](https://github.com/EleutherAI/lm-evaluation-harness/tree/big-refactor) branch! It is far along in progress, but before we start to move the `master` branch of the repository over to this new design with a new version release, we'd like to ensure that it's been tested by outside users and there are no glaring bugs.
-
-We’d like your help to test it out! you can help by:
-1. Trying out your current workloads on the big-refactor branch, and seeing if anything breaks or is counterintuitive,
-2. Porting tasks supported in the previous version of the harness to the new YAML configuration format. Please check out our [task implementation guide](https://github.com/EleutherAI/lm-evaluation-harness/blob/big-refactor/docs/new_task_guide.md) for more information.
-
-If you choose to port a task not yet completed according to [our checklist](https://github.com/EleutherAI/lm-evaluation-harness/blob/big-refactor/lm_eval/tasks/README.md), then you can contribute it by opening a PR containing [Refactor] in the name with:
-- A shell command to run the task in the `master` branch, and what the score is
-- A shell command to run the task in your PR branch to `big-refactor`, and what the resulting score is, to show that we achieve equality between the two implementations.
-
-Lastly, we'll no longer be accepting new feature requests beyond those that are already open to the master branch as we carry out this switch to the new version over the next week, though we will be accepting bugfixes to `master` branch and PRs to `big-refactor`. Feel free to reach out in the #lm-thunderdome channel of the EAI discord for more information.
-
+![](https://github.com/EleutherAI/lm-evaluation-harness/workflows/Build/badge.svg)
+[![codecov](https://codecov.io/gh/EleutherAI/lm-evaluation-harness/branch/master/graph/badge.svg?token=JSG3O2427J)](https://codecov.io/gh/EleutherAI/lm-evaluation-harness)
 
 ## Overview
 
@@ -138,15 +187,6 @@ GPTQ quantized models can be loaded by specifying their file names in `,quantize
 python main.py \
     --model hf-causal-experimental \
     --model_args pretrained=model-name-or-path,quantized=model.safetensors,gptq_use_triton=True \
-    --tasks hellaswag
-```
-
-GGUF or GGML quantized models can be loaded by using `llama-cpp-python` server:
-
-```bash
-python main.py \
-    --model gguf \
-    --model_args base_url=http://localhost:8000 \
     --tasks hellaswag
 ```
 
