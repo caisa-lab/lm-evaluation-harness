@@ -69,7 +69,8 @@ from .mlmm import multilingual_hellaswag
 from .mlmm import multilingual_mmlu
 from .mlmm import multilingual_truthfulqa
 from . import crowspairses
-
+from . import crowspairsit
+from . import crowspairsde
 
 ########################################
 # Translation tasks
@@ -327,6 +328,42 @@ TASK_REGISTRY = {
     "crows_pairs_french_nationality": crowspairs.CrowsPairsFrenchNationality,
     "crows_pairs_french_physical_appearance": crowspairs.CrowsPairsFrenchPhysicalAppearance,
     "crows_pairs_french_autre": crowspairs.CrowsPairsFrenchAutre,
+
+    "crows_pairs_spanish": crowspairses.CrowsPairsSpanish,
+    "crows_pairs_spanish_race_color": crowspairses.CrowsPairsSpanishRaceColor,
+    "crows_pairs_spanish_socioeconomic": crowspairses.CrowsPairsSpanishSocioeconomic,
+    "crows_pairs_spanish_gender": crowspairses.CrowsPairsSpanishGender,
+    "crows_pairs_spanish_age": crowspairses.CrowsPairsSpanishAge,
+    "crows_pairs_spanish_religion": crowspairses.CrowsPairsSpanishReligion,
+    "crows_pairs_spanish_disability": crowspairses.CrowsPairsSpanishDisability,
+    "crows_pairs_spanish_sexual_orientation": crowspairses.CrowsPairsSpanishSexualOrientation,
+    "crows_pairs_spanish_nationality": crowspairses.CrowsPairsSpanishNationality,
+    "crows_pairs_spanish_physical_appearance": crowspairses.CrowsPairsSpanishPhysicalAppearance,
+    "crows_pairs_spanish_autre": crowspairses.CrowsPairsSpanishAutre,
+
+    "crows_pairs_italian": crowspairsit.CrowsPairsItalian,
+    "crows_pairs_italian_race_color": crowspairsit.CrowsPairsItalianRaceColor,
+    "crows_pairs_italian_socioeconomic": crowspairsit.CrowsPairsItalianSocioeconomic,
+    "crows_pairs_italian_gender": crowspairsit.CrowsPairsItalianGender,
+    "crows_pairs_italian_age": crowspairsit.CrowsPairsItalianAge,
+    "crows_pairs_italian_religion": crowspairsit.CrowsPairsItalianReligion,
+    "crows_pairs_italian_disability": crowspairsit.CrowsPairsItalianDisability,
+    "crows_pairs_italian_sexual_orientation": crowspairsit.CrowsPairsItalianSexualOrientation,
+    "crows_pairs_italian_nationality": crowspairsit.CrowsPairsItalianNationality,
+    "crows_pairs_italian_physical_appearance": crowspairsit.CrowsPairsItalianPhysicalAppearance,
+    "crows_pairs_italian_autre": crowspairsit.CrowsPairsItalianAutre,
+
+    "crows_pairs_germany": crowspairsde.CrowsPairsGermany,
+    "crows_pairs_germany_race_color": crowspairsde.CrowsPairsGermanyRaceColor,
+    "crows_pairs_germany_socioeconomic": crowspairsde.CrowsPairsGermanySocioeconomic,
+    "crows_pairs_germany_gender": crowspairsde.CrowsPairsGermanyGender,
+    "crows_pairs_germany_age": crowspairsde.CrowsPairsGermanyAge,
+    "crows_pairs_germany_religion": crowspairsde.CrowsPairsGermanyReligion,
+    "crows_pairs_germany_disability": crowspairsde.CrowsPairsGermanyDisability,
+    "crows_pairs_germany_sexual_orientation": crowspairsde.CrowsPairsGermanySexualOrientation,
+    "crows_pairs_germany_nationality": crowspairsde.CrowsPairsGermanyNationality,
+    "crows_pairs_germany_physical_appearance": crowspairsde.CrowsPairsGermanyPhysicalAppearance,
+    "crows_pairs_germany_autre": crowspairsde.CrowsPairsGermanyAutre,
     # Requires manual download of data.
     # "storycloze_2016": storycloze.StoryCloze2016,
     # "storycloze_2018": storycloze.StoryCloze2018,

@@ -34,9 +34,9 @@ _CITATION = """
 """
 
 
-class CrowsPairsES(Task):
+class CrowsPairsIT(Task):
     VERSION = 0
-    DATASET_PATH = "lamarr-org/crows_pairs_es_new"
+    DATASET_PATH = "lamarr-org/crows_pairs_it_new"
     DATASET_NAME = None
     BIAS_TYPE = None
 
@@ -138,54 +138,53 @@ class CrowsPairsES(Task):
         return {"likelihood_difference": False, "pct_stereotype": False}
 
 
-class CrowsPairsSpanish(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalian(CrowsPairsIT):
+    DATASET_NAME = "italian"
 
-class CrowsPairsSpanishRaceColor(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianRaceColor(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "race-color"
 
-class CrowsPairsSpanishSocioeconomic(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianSocioeconomic(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "socioeconomic"
 
 
-class CrowsPairsSpanishGender(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianGender(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "gender"
 
 
-class CrowsPairsSpanishAge(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianAge(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "age"
 
 
-class CrowsPairsSpanishReligion(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianReligion(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "religion"
 
 
-class CrowsPairsSpanishDisability(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianDisability(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "disability"
 
 
-class CrowsPairsSpanishSexualOrientation(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianSexualOrientation(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "sexual-orientation"
 
 
-class CrowsPairsSpanishNationality(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianNationality(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "nationality"
 
 
-class CrowsPairsSpanishPhysicalAppearance(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianPhysicalAppearance(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "physical-appearance"
 
 
-class CrowsPairsSpanishAutre(CrowsPairsES):
-    DATASET_NAME = "spanish"
+class CrowsPairsItalianAutre(CrowsPairsIT):
+    DATASET_NAME = "italian"
     BIAS_TYPE = "autre"
-

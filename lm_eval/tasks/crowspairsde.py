@@ -36,7 +36,7 @@ _CITATION = """
 
 class CrowsPairsDE(Task):
     VERSION = 0
-    DATASET_PATH = "lamarr-org/crows_pairs_anonymized_de"
+    DATASET_PATH = "lamarr-org/crows_pairs_de_new"
     DATASET_NAME = None
     BIAS_TYPE = None
 
@@ -136,3 +136,55 @@ class CrowsPairsDE(Task):
     def higher_is_better(self):
         # For all metrics lower is better
         return {"likelihood_difference": False, "pct_stereotype": False}
+
+
+class CrowsPairsGermany(CrowsPairsDE):
+    DATASET_NAME = "germany"
+
+class CrowsPairsGermanyRaceColor(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "race-color"
+
+class CrowsPairsGermanySocioeconomic(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "socioeconomic"
+
+
+class CrowsPairsGermanyGender(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "gender"
+
+
+class CrowsPairsGermanyAge(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "age"
+
+
+class CrowsPairsGermanyReligion(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "religion"
+
+
+class CrowsPairsGermanyDisability(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "disability"
+
+
+class CrowsPairsGermanySexualOrientation(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "sexual-orientation"
+
+
+class CrowsPairsGermanyNationality(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "nationality"
+
+
+class CrowsPairsGermanyPhysicalAppearance(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "physical-appearance"
+
+
+class CrowsPairsGermanyAutre(CrowsPairsDE):
+    DATASET_NAME = "germany"
+    BIAS_TYPE = "autre"
