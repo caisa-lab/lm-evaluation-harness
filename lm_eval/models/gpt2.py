@@ -51,7 +51,7 @@ class HFLM(BaseLM):
                 self.tokenizer = transformers.AutoTokenizer.from_pretrained(
                     model_name,
                     revision=revision,
-                    trust_remote_code=trust_remote_code,
+                    trust_remote_code=True,
                 )
 
         elif isinstance(pretrained, str):
