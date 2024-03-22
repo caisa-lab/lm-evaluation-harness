@@ -4,7 +4,7 @@
 #SBATCH --output=logs/bbq_eval2.out
 #SBATCH --error=logs/bbq_eval2.err
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=joanplepi@gmail.com
+#SBATCH --mail-user=
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=64
 #SBATCH --mem=128GB
