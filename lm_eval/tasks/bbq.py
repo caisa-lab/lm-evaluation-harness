@@ -114,7 +114,7 @@ You have to reply with only the number of the choice that is the correct answer 
     def doc_to_text(self, doc):
         # Given a passage p, the conversation history {q1, a1, . . . qi−1, ai−1}
         # and a question qi, the task is to predict the answer ai
-        user_message = f"CTX: {doc['context']} \n Q: {doc['question']} \n Choices: \n"
+        user_message = f"### Context: {doc['context']} \n ###Question: {doc['question']} \n ###Choices: \n"
 
         for i, c in enumerate(doc["choices"]):
             user_message += f"{i}: {c} \n"
@@ -149,7 +149,7 @@ You have to reply with only the number of the choice that is the correct answer 
             language description, as well as the few shot examples, and the question
             part of the document for `doc`.
         """
-        cont_request = rf.greedy_until(ctx, {"until": ['</s>']})
+        cont_request = rf.greedy_until(self.doc_to_text(doc), {"until": ['</s>']})
         return cont_request
 
     def process_results(self, doc, results):
