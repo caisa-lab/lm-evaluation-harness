@@ -68,7 +68,10 @@ from . import csatqa
 from . import haerae
 from . import cmmlu
 from . import bbq
-
+from . import bbq_de
+from . import bbq_it
+from . import bbq_es
+from . import bbq_fr
 ########################################
 # Translation tasks
 ########################################
@@ -101,6 +104,10 @@ all_translation_benchmarks = {
 
 TASK_REGISTRY = {
     # Bias
+    "bbq_de": bbq_de.BBQ_de,
+    "bbq_it": bbq_it.BBQ_it,
+    "bbq_fr": bbq_fr.BBQ_fr,
+    "bbq_es": bbq_es.BBQ_es,
     "bbq": bbq.BBQ,
     "babi": babi.Babi,
     # GLUE
