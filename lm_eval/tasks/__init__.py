@@ -71,6 +71,7 @@ from .mlmm import multilingual_truthfulqa
 from . import crowspairses
 from . import crowspairsit
 from . import crowspairsde
+from . import crowspairsfr
 
 ########################################
 # Translation tasks
@@ -364,6 +365,18 @@ TASK_REGISTRY = {
     "crows_pairs_germany_nationality": crowspairsde.CrowsPairsGermanyNationality,
     "crows_pairs_germany_physical_appearance": crowspairsde.CrowsPairsGermanyPhysicalAppearance,
     "crows_pairs_germany_autre": crowspairsde.CrowsPairsGermanyAutre,
+
+    "crows_pairs_french_tl": crowspairsfr.CrowsPairsFrench,
+    "crows_pairs_french_tl_race_color": crowspairsfr.CrowsPairsFrenchRaceColor,
+    "crows_pairs_french_tl_socioeconomic": crowspairsfr.CrowsPairsFrenchSocioeconomic,
+    "crows_pairs_french_tl_gender": crowspairsfr.CrowsPairsFrenchGender,
+    "crows_pairs_french_tl_age": crowspairsfr.CrowsPairsFrenchAge,
+    "crows_pairs_french_tl_religion": crowspairsfr.CrowsPairsFrenchReligion,
+    "crows_pairs_french_tl_disability": crowspairsfr.CrowsPairsFrenchDisability,
+    "crows_pairs_french_tl_sexual_orientation": crowspairsfr.CrowsPairsFrenchSexualOrientation,
+    "crows_pairs_french_tl_nationality": crowspairsfr.CrowsPairsFrenchNationality,
+    "crows_pairs_french_tl_physical_appearance": crowspairsfr.CrowsPairsFrenchPhysicalAppearance,
+    "crows_pairs_french_tl_autre": crowspairsfr.CrowsPairsFrenchAutre,
     # Requires manual download of data.
     # "storycloze_2016": storycloze.StoryCloze2016,
     # "storycloze_2018": storycloze.StoryCloze2018,
