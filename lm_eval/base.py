@@ -12,10 +12,9 @@ import torch
 import torch.nn.functional as F
 from accelerate import find_executable_batch_size
 
-from lm_eval.metrics import mean, weighted_perplexity, weighted_mean, bits_per_byte
+from lm_eval.metrics import mean, weighted_perplexity, weighted_mean, bits_per_byte, get_perplexity_of_one_sentence
 from lm_eval import utils
 from abc import abstractmethod
-
 
 class LM(abc.ABC):
     def __init__(self):
@@ -406,7 +405,16 @@ class BaseLM(LM):
                 res.append(answer)
 
         return re_ord.get_original(res)
-
+    
+    def perplexity_based_classification(self, request):
+        results = []
+        for req in tqdm(request):
+            results_of_one_sample = []
+            for sent in req[0]["requests"]:
+                results_of_one_sample.append(get_perplexity_of_one_sentence(self, sent).item())
+            results.append(results_of_one_sample)
+        return results
+        
     def greedy_until(self, requests):
         # TODO: implement fully general `until` that handles until that are
         #       multiple tokens or that span multiple tokens correctly
@@ -950,6 +958,7 @@ REQUEST_RETURN_LENGTHS = {
     "loglikelihood": 2,
     "greedy_until": None,
     "loglikelihood_rolling": None,
+    "perplexity_based_classification": None
 }
 
 

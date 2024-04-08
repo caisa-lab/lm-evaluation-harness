@@ -5,6 +5,9 @@ import numpy as np
 import sacrebleu
 import sklearn.metrics
 import random
+from torch.nn import CrossEntropyLoss
+from tqdm import tqdm
+import torch
 
 
 def mean(arr):
@@ -251,6 +254,45 @@ def stderr_for_metric(metric, bootstrap_iters):
 
     return stderr.get(metric, None)
 
+def get_perplexity_of_one_sentence(model, sentence, window=5):
+    loss_fct = CrossEntropyLoss()
+    stride = 1
+    tokenizer = model.tokenizer
+    encoded = torch.unsqueeze(torch.Tensor(tokenizer.encode(sentence, return_tensors="pt")), dim=0).to("cuda").long()  # make it batched
+    seq_len = encoded.shape[1]
+    nlls = []
+    prev_end_loc = 0
+
+    for begin_loc in range(0, seq_len, stride):
+        end_loc = min(begin_loc + window, seq_len)
+        trg_len = end_loc - prev_end_loc  # may be different from stride on last loop
+        input_ids = encoded[:, begin_loc:end_loc].to("cuda")
+        target_ids = input_ids.clone()
+        target_ids[:, :-trg_len] = -100
+
+
+        with torch.no_grad():
+            outputs = model._model_call(input_ids)
+
+            ##  calculating loss
+
+            shift_logits = outputs[..., :-1, :].contiguous()
+            shift_labels = target_ids[..., 1:].contiguous()
+            
+            # loss is calculated using CrossEntropyLoss which averages over valid labels
+            # N.B. the model only calculates loss over trg_len - 1 labels, because it internally shifts the labels
+            # to the left by 1.
+
+            neg_log_likelihood = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
+
+        nlls.append(neg_log_likelihood)
+
+        prev_end_loc = end_loc
+        if end_loc == seq_len:
+            break
+
+    ppl = torch.exp(torch.stack(nlls).mean())
+    return ppl
 
 def yesno(x):
     if x:

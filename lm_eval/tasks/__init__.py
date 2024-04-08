@@ -104,10 +104,58 @@ all_translation_benchmarks = {
 
 TASK_REGISTRY = {
     # Bias
-    "bbq_de": bbq_de.BBQ_de,
-    "bbq_it": bbq_it.BBQ_it,
-    "bbq_fr": bbq_fr.BBQ_fr,
-    "bbq_es": bbq_es.BBQ_es,
+    "bbq_de_age": bbq_de.BBQdeAge,
+    "bbq_de_all": bbq_de.BBQdeAll,
+    "bbq_de_disability_status": bbq_de.BBQdeDisabilityStatus,
+    "bbq_de_gender_identity": bbq_de.BBQdeGenderIdentity,
+    "bbq_de_nationality": bbq_de.BBQdeNationality,
+    "bbq_de_physical_appearance": bbq_de.BBQdePhysicalAppearance,
+    "bbq_de_race_ethnicity": bbq_de.BBQdeRaceEthnicity,
+    "bbq_de_race_x_gender": bbq_de.BBQdeRaceXGender,
+    "bbq_de_race_x_SES": bbq_de.BBQdeRaceXSES,
+    "bbq_de_religion": bbq_de.BBQdeRegligion,
+    "bbq_de_SES": bbq_de.BBQdeSES,
+
+
+    "bbq_es_age": bbq_es.BBQesAge,
+    "bbq_es_all": bbq_es.BBQesAll,
+    "bbq_es_disability_status": bbq_es.BBQesDisabilityStatus,
+    "bbq_es_gender_identity": bbq_es.BBQesGenderIdentity,
+    "bbq_es_nationality": bbq_es.BBQesNationality,
+    "bbq_es_physical_appearance": bbq_es.BBQesPhysicalAppearance,
+    "bbq_es_race_ethnicity": bbq_es.BBQesRaceEthnicity,
+    "bbq_es_race_x_gender": bbq_es.BBQesRaceXGender,
+    "bbq_es_race_x_SES": bbq_es.BBQesRaceXSES,
+    "bbq_es_religion": bbq_es.BBQesRegligion,
+    "bbq_es_SES": bbq_es.BBQesSES,
+
+
+    "bbq_it_age": bbq_it.BBQitAge,
+    "bbq_it_all": bbq_it.BBQitAll,
+    "bbq_it_disability_status": bbq_it.BBQitDisabilityStatus,
+    "bbq_it_gender_identity": bbq_it.BBQitGenderIdentity,
+    "bbq_it_nationality": bbq_it.BBQitNationality,
+    "bbq_it_physical_appearance": bbq_it.BBQitPhysicalAppearance,
+    "bbq_it_race_ethnicity": bbq_it.BBQitRaceEthnicity,
+    "bbq_it_race_x_gender": bbq_it.BBQitRaceXGender,
+    "bbq_it_race_x_SES": bbq_it.BBQitRaceXSES,
+    "bbq_it_religion": bbq_it.BBQitRegligion,
+    "bbq_it_SES": bbq_it.BBQitSES,
+
+
+    "bbq_fr_age": bbq_fr.BBQfrAge,
+    "bbq_fr_all": bbq_fr.BBQfrAll,
+    "bbq_fr_disability_status": bbq_fr.BBQfrDisabilityStatus,
+    "bbq_fr_gender_identity": bbq_fr.BBQfrGenderIdentity,
+    "bbq_fr_nationality": bbq_fr.BBQfrNationality,
+    "bbq_fr_physical_appearance": bbq_fr.BBQfrPhysicalAppearance,
+    "bbq_fr_race_ethnicity": bbq_fr.BBQfrRaceEthnicity,
+    "bbq_fr_race_x_gender": bbq_fr.BBQfrRaceXGender,
+    "bbq_fr_race_x_SES": bbq_fr.BBQfrRaceXSES,
+    "bbq_fr_religion": bbq_fr.BBQfrRegligion,
+    "bbq_fr_SES": bbq_fr.BBQfrSES,
+
+
     "bbq": bbq.BBQ,
     "babi": babi.Babi,
     # GLUE
