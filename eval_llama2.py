@@ -14,7 +14,7 @@ parser.add_argument("--output_base_path", type=str, default=None)
 if __name__ == '__main__':
     args = parser.parse_args()
     model_name = args.model_name
-    model = AutoModelForCausalLM.from_pretrained(f"{model_name}", torch_dtype=torch.float16, device_map="auto") # torch_dtype=torch.float16, device_map="auto"
+    model = AutoModelForCausalLM.from_pretrained(f"{model_name}", torch_dtype=torch.float16, device_map="auto", trust_remote_code=True) # torch_dtype=torch.float16, device_map="auto"
     model_name = model_name.split('/')[-1]
     tasks = [t.strip() for t in args.tasks.split(",")]
     print("Evaluating on the following tasks:")

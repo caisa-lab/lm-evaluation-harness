@@ -65,8 +65,8 @@ def simple_evaluate(
     :return
         Dictionary of results
     """
-    random.seed(1234)
-    np.random.seed(1234)
+    random.seed(2234)
+    np.random.seed(2234)
 
     assert tasks != [], "No tasks specified"
 

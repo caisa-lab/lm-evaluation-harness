@@ -72,6 +72,7 @@ from . import bbq_de
 from . import bbq_it
 from . import bbq_es
 from . import bbq_fr
+from . import bbq_en
 ########################################
 # Translation tasks
 ########################################
@@ -154,6 +155,18 @@ TASK_REGISTRY = {
     "bbq_fr_race_x_SES": bbq_fr.BBQfrRaceXSES,
     "bbq_fr_religion": bbq_fr.BBQfrRegligion,
     "bbq_fr_SES": bbq_fr.BBQfrSES,
+
+    "bbq_en_age": bbq_en.BBQenAge,
+    "bbq_en_all": bbq_en.BBQenAll,
+    "bbq_en_disability_status": bbq_en.BBQenDisabilityStatus,
+    "bbq_en_gender_identity": bbq_en.BBQenGenderIdentity,
+    "bbq_en_nationality": bbq_en.BBQenNationality,
+    "bbq_en_physical_appearance": bbq_en.BBQenPhysicalAppearance,
+    "bbq_en_race_ethnicity": bbq_en.BBQenRaceEthnicity,
+    "bbq_en_race_x_gender": bbq_en.BBQenRaceXGender,
+    "bbq_en_race_x_SES": bbq_en.BBQenRaceXSES,
+    "bbq_en_religion": bbq_en.BBQenRegligion,
+    "bbq_en_SES": bbq_en.BBQenSES,
 
 
     "bbq": bbq.BBQ,

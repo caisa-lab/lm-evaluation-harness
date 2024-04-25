@@ -294,6 +294,36 @@ def get_perplexity_of_one_sentence(model, sentence, window=5):
     ppl = torch.exp(torch.stack(nlls).mean())
     return ppl
 
+def autoregressive_for_choices(model, c, q, cs):
+    tokenizer = model.tokenizer
+    full_context = c + " " + q + " "
+    log_prob_list = []
+
+    for choice in cs:
+        log_prob_sum = 0
+        input_ids = torch.unsqueeze(torch.Tensor(tokenizer.encode(full_context, return_tensors='pt')), dim=0).to("cuda").long()
+        output = model._model_call(input_ids) 
+        for word in choice.split():
+            next_token_id = torch.unsqueeze(torch.Tensor(tokenizer.encode(word, add_special_tokens=False)), dim=0).to("cuda").long()
+
+            next_word_logits = output[0, -1, :]
+
+            next_word_probs = torch.softmax(next_word_logits, dim=-1)
+            next_word_log_prob = torch.log(next_word_probs[next_token_id])
+
+            log_prob_sum += next_word_log_prob.item()
+
+            input_ids = torch.cat([input_ids, next_token_id.unsqueeze(0).unsqueeze(0)], dim=1).to("cuda")
+
+            output = model._model_call(input_ids) 
+
+        log_prob_list.append(log_prob_sum)
+
+    final_choice = np.argmax(log_prob_list)
+
+    return final_choice
+        
+
 def yesno(x):
     if x:
         return "yes"

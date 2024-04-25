@@ -408,7 +408,7 @@ class BaseLM(LM):
     
     def perplexity_based_classification(self, request):
         results = []
-        for req in tqdm(request):
+        for req in tqdm(request[:10]):
             results_of_one_sample = []
             for sent in req[0]["requests"]:
                 results_of_one_sample.append(get_perplexity_of_one_sentence(self, sent).item())
