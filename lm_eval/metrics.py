@@ -302,18 +302,19 @@ def autoregressive_for_choices(model, c, q, cs):
     for choice in cs:
         log_prob_sum = 0
         input_ids = torch.unsqueeze(torch.Tensor(tokenizer.encode(full_context, return_tensors='pt')), dim=0).to("cuda").long()
-        output = model._model_call(input_ids) 
-        for word in choice.split():
-            next_token_id = torch.unsqueeze(torch.Tensor(tokenizer.encode(word, add_special_tokens=False)), dim=0).to("cuda").long()
+        output = model._model_call(input_ids)
+        for word in tokenizer.encode(choice, add_special_tokens=False):
+            to_be_concate = torch.unsqueeze(torch.Tensor([word]), dim=0).to("cuda").long()
 
             next_word_logits = output[0, -1, :]
 
             next_word_probs = torch.softmax(next_word_logits, dim=-1)
-            next_word_log_prob = torch.log(next_word_probs[next_token_id])
+
+            next_word_log_prob = torch.log(next_word_probs[word])
 
             log_prob_sum += next_word_log_prob.item()
 
-            input_ids = torch.cat([input_ids, next_token_id.unsqueeze(0).unsqueeze(0)], dim=1).to("cuda")
+            input_ids = torch.cat([input_ids, to_be_concate], dim=1).to("cuda")
 
             output = model._model_call(input_ids) 
 
