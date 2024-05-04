@@ -294,15 +294,14 @@ def get_perplexity_of_one_sentence(model, sentence, window=5):
     ppl = torch.exp(torch.stack(nlls).mean())
     return ppl
 
-def autoregressive_for_choices(model, c, q, cs):
-    tokenizer = model.tokenizer
+def autoregressive_for_choices(model, tokenizer, c, q, cs):
     full_context = c + " " + q + " "
     log_prob_list = []
 
     for choice in cs:
         log_prob_sum = 0
         input_ids = torch.unsqueeze(torch.Tensor(tokenizer.encode(full_context, return_tensors='pt')), dim=0).to("cuda").long()
-        output = model._model_call(input_ids)
+        output = model(input_ids)
         for word in tokenizer.encode(choice, add_special_tokens=False):
             to_be_concate = torch.unsqueeze(torch.Tensor([word]), dim=0).to("cuda").long()
 
@@ -316,7 +315,7 @@ def autoregressive_for_choices(model, c, q, cs):
 
             input_ids = torch.cat([input_ids, to_be_concate], dim=1).to("cuda")
 
-            output = model._model_call(input_ids) 
+            output = model(input_ids) 
 
         log_prob_list.append(log_prob_sum)
 
@@ -324,6 +323,35 @@ def autoregressive_for_choices(model, c, q, cs):
 
     return final_choice
         
+
+def autoregressive_for_choices_1(model, tokenizer, c, q, cs):
+    full_context = c + " " + q + " "
+    log_prob_list = []
+
+    for choice in cs:
+        log_prob_sum = 0
+        input_ids = torch.Tensor(tokenizer.encode(full_context, return_tensors='pt')).to("cuda").long()
+        output = model(input_ids).logits
+        for word in tokenizer.encode(choice, add_special_tokens=False):
+            to_be_concate = torch.unsqueeze(torch.Tensor([word]), dim=0).to("cuda").long()
+
+            next_word_logits = output[0, -1, :]
+
+            next_word_probs = torch.softmax(next_word_logits, dim=-1)
+
+            next_word_log_prob = torch.log(next_word_probs[word])
+
+            log_prob_sum += next_word_log_prob.item()
+
+            input_ids = torch.cat([input_ids, to_be_concate], dim=1).to("cuda")
+
+            output = model(input_ids).logits
+
+        log_prob_list.append(log_prob_sum)
+
+    final_choice = np.argmax(log_prob_list)
+
+    return final_choice
 
 def yesno(x):
     if x:
